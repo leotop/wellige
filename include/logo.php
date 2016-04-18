@@ -1,0 +1,1 @@
+<a href="/" ><img src="/img/logos/logo.png" alt="Wellige - мебель и аксессуары в загородном стиле" class="logo__img"></a>

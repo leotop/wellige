@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Welliege</title>
+        <meta name="description" content="">
+        <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="SKYPE_TOOLBAR" content="SKYPE_TOOLBAR_PARSER_COMPATIBLE">
+        <!-- favicon -->
+        <!-- favicon -->
+        <link rel="stylesheet" href="../tpl/css/lib.css" />
+        <link rel="stylesheet" href="../tpl/css/styles.css" />
+        <script src="../tpl/js/vendor/modernizr.js"></script>
+    </head>
+
+    <body class="collection-page">
+        <header class="header js-lock-scroll js-header header--fixed js-fixed-head">
+            <!--[if lte IE 8]>
+            <div class="old-browser js-old">
+            Вы используете старый браузер. Сайт может отображаться некорректно
+            </div>
+            <![endif]-->
+            <div class="burger js-burger"><i></i></div>
+            <nav class="menu js-menu ">
+                <div class="menu__center">
+                    <div class="menu__inner __left">
+                        <div class="menu__column">
+                            <div href="#!" class="menu__item __main __head js-burger ">Стили мебели</div>
+                            <div class="menu__hidden js-hidden-column">
+                                <div class="dropdown">
+                                    <div class="dropdown__title menu__item __sub js-dropdown-trigger"><a href="#!">кантри</a></div>
+                                    <div class="dropdown__body js-dropdown"> <a href="#!" class="menu__item __sub">Лагос</a> <a href="#!" class="menu__item __sub">Флорис</a> <a href="#!" class="menu__item __sub">Трувилль</a> <a href="#!" class="menu__item __sub">Кантри</a> </div>
+                                </div>
+                                <div class="dropdown">
+                                    <div class="menu__item __sub dropdown__title js-dropdown-trigger"><a href="#!">прованс</a></div>
+                                    <div class="dropdown__body js-dropdown"> <a href="#!" class="menu__item __sub">Лагос</a> <a href="#!" class="menu__item __sub">Флорис</a> <a href="#!" class="menu__item __sub">Трувилль</a> <a href="#!" class="menu__item __sub">Кантри</a> </div>
+                                </div>
+                                <div class="dropdown">
+                                    <div class="menu__item __sub dropdown__title js-dropdown-trigger"><a href="#!">ЛОФТ</a></div>
+                                    <div class="dropdown__body js-dropdown"> <a href="#!" class="menu__item __sub">Лагос</a> <a href="#!" class="menu__item __sub">Флорис</a> <a href="#!" class="menu__item __sub">Трувилль</a> <a href="#!" class="menu__item __sub">Кантри</a> </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="menu__column">
+                            <div href="#!" class="menu__item __main __head js-burger ">о бренде</div>
+                            <div class="menu__hidden js-hidden-column"> <a href="#!" class="menu__item __sub">wellige в медиа</a> <a href="#!" class="menu__item __sub">доверие и качество</a> <a href="#!" class="menu__item __sub">контакты</a> </div>
+                        </div>
+                    </div>
+                    <a class="menu__logo " href="/_html/"><img src="../tpl/img/logos/logo.png" alt="Wellige - мебель и аксессуары в загородном стиле" class="logo__img"></a>
+                    <div class="menu__inner __right">
+                        <div class="menu__column">
+                            <div href="#!" class="menu__item __main __head js-burger ">покупателю</div>
+                            <div class="menu__hidden js-hidden-column"> <a href="#!" class="menu__item __sub">оплата и доставка</a> <a href="#!" class="menu__item __sub">уход за мебелью</a> <a href="#!" class="menu__item __sub">помощь дизайнера</a> </div>
+                        </div>
+                        <div class="menu__column">
+                            <div href="#!" class="menu__item __main __head js-burger ">где купить?</div>
+                            <div class="menu__hidden js-hidden-column"> <a href="#!" class="menu__item __sub">Адреса салонов</a> <a href="#!" class="menu__item __sub">интернет-магазин</a>
+                            <div class="menu__item __main">партнёрство</div> <a href="#!" class="menu__item __sub">дилерам</a> <a href="#!" class="menu__item __sub">франчайзинг</a> <a href="#!" class="menu__item __sub">дизайнерам</a> </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-footer js-footer js-hidden-column">
+                    <div class="menu-footer__copyright">WELLIGE © 2015</div> <a href="#!" class="menu-footer__legal">юридическая информация</a>
+                    <div class="menu-footer__social">
+                        <a href="#!" class="footer__social-link __fb js-fb-link"></a>
+                        <a href="#!" class="footer__social-link __vk js-vk-link"></a>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <div class="page">
+            <div class="wrapper">
+                <div class="breadcrumbs"> <a href="#!">О бренде</a> </div>
+                <h1>
+                    Лагос
+                    <span class="collection-filter__close js-filter-toggle js-filter-toggle-close">скрыть</span>
+                    <span class="collection-filter__open js-filter-toggle js-filter-toggle-open">все наборы</span>
+                </h1> 
+            </div>
+            <section class="collection">
+                <div class="wrapper">
+                    <div class="search">
+                        <form class="search-form js-search" id="search" action="/html/_html/_collection-search.json">
+                            <input class="collection__search js-search-input" id="search-input" name="search" type="text" placeholder="поиск по коллекции" />
+                        <input class="collection__search-submit" type="submit" value="" /> </form>
+                        <div class="search__dropdown js-search-dropdown _hidden"></div>
+                    </div>
+                </div>
+                <div class="collection-filter js-collection-filter" data-action="collection-ajax.php">
+                    <div class="wrapper">
+                        <div class="js-collection-main-filter">
+                            <div class="collection-filter__title"> комнаты в коллекции <span class="collection-filter__all js-all" data-type="rooms">показать все комнаты</span> </div>
+                            <div class="collection-filter__inner">
+                                <div class="collection-filter__room-item js-filter-item" data-filter-type="main" data-filter="1" data-name="кухни"> 
+                                <img src="../tpl/img/pages/collection/room-1.jpg" alt="" /> <span class="item-name">кухни</span> </div>
+                                <div class="collection-filter__room-item js-filter-item" data-filter-type="main" data-filter="2" data-name="библиотеки">
+                                <img src="../tpl/img/pages/collection/room-2.jpg" alt="" /> <span class="item-name">библиотеки</span> </div>
+                                <div class="collection-filter__room-item js-filter-item" data-filter-type="main" data-filter="3" data-name="гостинные">
+                                <img src="../tpl/img/pages/collection/room-3.jpg" alt="" /> <span class="item-name">гостинные</span> </div>
+                                <div class="collection-filter__room-item js-filter-item" data-filter-type="main" data-filter="4" data-name="детские">
+                                <img src="../tpl/img/pages/collection/room-4.jpg" alt="" /> <span class="item-name">детские</span> </div>
+                            </div>
+                        </div>
+                        <div class="collection-filter__title"> отдельные предметы <span class="collection-filter__all js-all" data-type="item">показать все предметы</span> </div>
+                        <div class="collection-filter__inner">
+                            <div class="collection-filter__item js-filter-item" data-filter-type="sub" data-filter="5" data-name="столы">столы</div>
+                            <div class="collection-filter__item js-filter-item" data-filter-type="sub" data-filter="6" data-name="стулья">стулья</div>
+                            <div class="collection-filter__item js-filter-item" data-filter-type="sub" data-filter="7" data-name="стеллажи">стеллажи</div>
+                            <div class="collection-filter__item js-filter-item" data-filter-type="sub" data-filter="8" data-name="тумбы">тумбы</div>
+                            <div class="collection-filter__item js-filter-item" data-filter-type="sub" data-filter="9" data-name="шкафы">шкафы</div>
+                            <div class="collection-filter__item js-filter-item" data-filter-type="sub" data-filter="10" data-name="кровати">кровати</div>
+                            <div class="collection-filter__item js-filter-item" data-filter-type="sub" data-filter="11" data-name="банкетки">банкетки</div>
+                            <div class="collection-filter__item js-filter-item" data-filter-type="sub" data-filter="12" data-name="табуреты">табуреты</div>
+                            <div class="collection-filter__item js-filter-item" data-filter-type="sub" data-filter="13" data-name="комоды">комоды</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="wrapper js-items-top">
+                    <div class="collection-inner js-collection-cat-filter js-collection-cat-filter-rooms">
+                        <div class="collection-item collection-item--big js-filter-item" data-filter="1" data-name="кухни"> <img src="../tpl/img/pages/collection/room-1-big.jpg" alt="" /> <span class="item-name">3 кухни</span> </div>
+                        <div class="collection-item collection-item--big js-filter-item" data-filter="2" data-name="библиотеки"> <img src="../tpl/img/pages/collection/room-2-big.jpg" alt="" /> <span class="item-name">5 библиотек</span> </div>
+                        <div class="collection-item collection-item--big js-filter-item" data-filter="3" data-name="гостинные"> <img src="../tpl/img/pages/collection/room-3-big.jpg" alt="" /> <span class="item-name">5 гостинных</span> </div>
+                        <div class="collection-item collection-item--big js-filter-item" data-filter="4" data-name="детские"> <img src="../tpl/img/pages/collection/room-4-big.jpg" alt="" /> <span class="item-name">3 детских</span> </div>
+                    </div>
+                    <div class="collection-inner collection-cat-filter-item js-collection-cat-filter js-collection-cat-filter-item">
+                        <div class="collection-item js-filter-item" data-filter="5" data-name="столы"> <img src="../tpl/img/pages/collection/room-1-big.jpg" alt="" /> <span class="item-name">столы</span> </div>
+                        <div class="collection-item js-filter-item" data-filter="6" data-name="стулья"> <img src="../tpl/img/pages/collection/room-2-big.jpg" alt="" /> <span class="item-name">стулья</span> </div>
+                        <div class="collection-item js-filter-item" data-filter="7" data-name="стеллажи"> <img src="../tpl/img/pages/collection/room-3-big.jpg" alt="" /> <span class="item-name">стеллажи</span> </div>
+                        <div class="collection-item js-filter-item" data-filter="8" data-name="тумбы"> <img src="../tpl/img/pages/collection/room-4-big.jpg" alt="" /> <span class="item-name">тумбы</span> </div>
+                        <div class="collection-item js-filter-item" data-filter="9" data-name="шкафы"> <img src="../tpl/img/pages/collection/room-1-big.jpg" alt="" /> <span class="item-name">шкафы</span> </div>
+                        <div class="collection-item js-filter-item" data-filter="10" data-name="кровати"> <img src="../tpl/img/pages/collection/room-2-big.jpg" alt="" /> <span class="item-name">кровати</span> </div>
+                        <div class="collection-item js-filter-item" data-filter="11" data-name="банкетки"> <img src="../tpl/img/pages/collection/room-3-big.jpg" alt="" /> <span class="item-name">банкетки</span> </div>
+                        <div class="collection-item js-filter-item" data-filter="12" data-name="табуреты"> <img src="../tpl/img/pages/collection/room-4-big.jpg" alt="" /> <span class="item-name">табуреты</span> </div>
+                        <div class="collection-item js-filter-item" data-filter="13" data-name="комоды"> <img src="../tpl/img/pages/collection/room-4-big.jpg" alt="" /> <span class="item-name">комоды</span> </div>
+                    </div>
+                    <div class="collection-inner js-collection-items"></div>
+                </div>
+            </section>
+            <section class="designer-help">
+                <div class="wrapper">
+                    <div class="designer-help__icon"></div>
+                    <div class="designer-help__info"> Не можете определиться какая мебель подойдет?
+                    <br> Нужна помощь дизайнера? </div> <a class="designer-help__btn btn btn--greenbg" href="#">получить помощь</a> </div>
+            </section>
+            <section class="slide-carousel">
+                <div class="wrapper">
+                <h4 class="slide-carousel__title">другие коллекции</h4> </div>
+                <div class="slide-carousel__wrap js-slider">
+                    <div class="slide-carousel__item" style="background-image: url('../tpl/img/pages/collection/slide-1.jpg')">
+                        <div class="slide-carousel__wrapper">
+                            <div class="slide-carousel__inner">
+                                <div class="slide-carousel__prename">Коллекция</div>
+                                <div class="slide-carousel__name">трувилль</div>
+                                <div class="slide-carousel__text">Натуральный светлый массив дуба, пропитанный бейц-масломпривнесёт в дом свежесть и теплоту, столь характерные для скандинавского жилища</div>
+                                <div class="slide-carousel__btn btn btn--white">посмотреть коллекцию</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide-carousel__item" style="background-image: url('../tpl/img/pages/collection/slide-2.jpg')">
+                        <div class="slide-carousel__wrapper">
+                            <div class="slide-carousel__inner">
+                                <div class="slide-carousel__prename">Коллекция</div>
+                                <div class="slide-carousel__name">Лагос</div>
+                                <div class="slide-carousel__text">Натуральный светлый массив дуба, пропитанный бейц-маслом привнесёт в дом свежесть и теплоту, столь характерные для скандинавского жилища</div>
+                                <div class="slide-carousel__btn btn btn--white">посмотреть коллекцию</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div class="ajax-layout js-ajax-layout"></div>
+        </div>
+        <script src="//maps.googleapis.com/maps/api/js?v=3.exp"></script>
+        <script src="../tpl/js/lib.js"></script>
+        <script src="../tpl/js/common.js"></script>
+        <!--[if lte IE 8]>
+        <div class="old-browser js-old">
+        Вы используете старый браузер. Сайт может отображаться некорректно
+        </div>
+        <![endif]-->
+    </body>
+
+</html>

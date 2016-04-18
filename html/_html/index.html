@@ -1,0 +1,102 @@
+<!doctype html>
+<html class="no-js" lang="ru">
+
+    <head>
+        <meta charset="utf-8">
+        <title>Страницы проекта Welliege</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            body {
+                padding: 0 0 0 40px;
+                margin: 0;
+                font-family: Arial;
+                font-size: 16px;
+                color: #555;
+            }
+            
+            a {
+                color: #39c;
+                pointer-events: all;
+                text-decoration: none;
+            }
+            
+            a.iddle {
+                pointer-events: none;
+                color: #ccc;
+            }
+            
+            a:hover {
+                border-bottom: 1px solid rgba(51, 153, 204, 0.5);
+            }
+            
+            ol {
+                counter-reset: heading;
+                padding: 0;
+            }
+            
+            li {
+                margin-bottom: 5px;
+                list-style: none;
+                page-break-inside: avoid;
+            }
+            
+            .logo {
+                position: absolute;
+                top: 0;
+                left: 0;
+                background: #44695b;
+                width: 150px;
+                padding: 30px 15px;
+                height: 100vh;
+                box-sizing: border-box;
+            }
+            
+            .logo img {
+                width: 100%;
+            }
+            
+            li:before {
+                counter-increment: heading;
+                content: counter(heading) ".";
+                font-size: 14px;
+                color: #aaa;
+                display: inline-block;
+                width: 25px;
+                margin-right: 5px;
+                text-align: right;
+            }
+            
+            h3,
+            ol {
+                margin-left: 140px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="logo"><img src="../tpl/img/logos/logo.png" alt=""></div>
+        <h3>Страницы проекта Wellige: </h3>
+        <ol>
+            <li><a href="../_html/main.html">Главная</a></li>
+            <li><a href="../_html/404.html">404 ошибка</a></li>
+            <li><a href="../_html/care.html">Уход за мебелью</a></li>
+            <li><a href="../_html/wheretobuy-store.html">Магазин</a></li>
+            <li><a href="../_html/certificates.html">Сертификаты</a></li>
+            <li><a href="../_html/collection.html">Коллекция</a></li>
+            <li><a href="../_html/contacts.html">Контакты</a></li>
+            <li><a href="../_html/designerhelp.html">Помощь дизайнера</a></li>
+            <li><a href="../_html/dilers.html">Дилерам</a></li>
+            <li><a href="../_html/fordesigners.html">Дизайнерам</a></li>
+            <li><a href="../_html/franchise.html">Франчайзинг</a></li>
+            <li><a href="../_html/media.html">Медиа</a></li>
+            <li><a href="../_html/payment.html">Оплата и доставка</a></li>
+            <li>Карточка продукта: <a href="../_html/product.html">выбор цвета</a>, <a href="../_html/product-slider.html">слайдер изображения</a></li>
+            <li><a href="../_html/product.html">Карточка продукта</a></li>
+            <li><a href="../_html/library.html">Библиотека</a></li>
+            <li><a href="../_html/style.html">Стиль</a></li>
+            <li><a href="../_html/wheretobuy.html">Где купить</a></li>
+            <li><a href="../_html/article.html">Статья</a></li>
+        </ol>
+    </body>
+
+</html>

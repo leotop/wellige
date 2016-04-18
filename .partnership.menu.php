@@ -1,0 +1,25 @@
+<?
+$aMenuLinks = Array(
+	Array(
+		"Дилерам", 
+		"/dealers/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Франчайзинг", 
+		"/franchising/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Дизайнерам", 
+		"/designers/", 
+		Array(), 
+		Array(), 
+		"" 
+	)
+);
+?>
