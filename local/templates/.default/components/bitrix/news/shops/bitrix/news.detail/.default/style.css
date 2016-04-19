@@ -1,0 +1,35 @@
+div.news-detail
+{
+	word-wrap: break-word;
+}
+div.news-detail img.detail_picture
+{
+	float:left;
+	margin:0 8px 6px 1px;
+}
+.news-date-time
+{
+	color:#486DAA;
+}
+
+.store__contacts p {
+    max-width:300px;
+}
+
+.howtoget__text.subway::before {
+    width:0 !important;
+    margin:0 !important;
+}
+.howtoget__text > span{
+    display: block;
+    float: left;
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+    position: relative;
+    top: 9px;
+    margin-right: 7px;
+}
+.howtoget__text > p{
+   /* float: left;  */
+}

@@ -1,0 +1,52 @@
+.breadcrumbs span {
+    color: #44695b;
+    font-family: "PT Sans";
+    font-size: 14px;
+    margin-right: 15px;
+    padding-left: 15px;
+    position: relative;
+    z-index: 1;    
+}
+
+.breadcrumbs span::before {
+    /*background: rgba(0, 0, 0, 0) url("/img/icons/breadcrumb.svg") repeat scroll 0 0;*/
+    background: url("/img/icons/breadcrumb.svg");
+    left: 0;
+    height: 8px;
+    width: 6px;
+    z-index: 1;
+}
+.breadcrumbs span::before, .breadcrumbs span::after {
+    /*content: "";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: all 0.3s ease 0s;*/
+    content: "";
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+}
+
+.breadcrumbs span::after {
+    /*border-radius: 2px;
+    height: 15px;
+    left: -14px;
+    width: 20px;*/
+    width: 20px;
+    height: 15px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    left: -14px;
+}
+.breadcrumbs span::before, .breadcrumbs span::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: all 0.3s ease 0s;
+}
