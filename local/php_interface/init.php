@@ -484,7 +484,7 @@
                     if ($offerItem[11] == "левая" || $offerItem[11] == "левый" || $offerItem[11] == "левое") {
                         $sku_prop["LEFT_RIGHT"] =  114; //левый
                     }
-                    else {
+                    else if ($offerItem[11] == "правая" || $offerItem[11] == "правый" || $offerItem[11] == "правое"){
                         $sku_prop["LEFT_RIGHT"] = 115; //правый
                     }
 
