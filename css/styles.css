@@ -5105,7 +5105,7 @@ a {
 
 .library-help__title {
     padding-left: 200px;
-/*    width: 450px !important;*/
+    /*    width: 450px !important;*/
 }
 
 .library-other {
@@ -7650,4 +7650,8 @@ dl.product-features__feature-text {
     min-height: 356px;
     margin-bottom: 30px;
     margin-top: 40px;
+}
+
+.product__image .slick-list {
+    height: 100% !important;
 }
