@@ -748,7 +748,7 @@
     //Custom sorting
     function customSorting($key, $way) {
         return function ($a, $b) use ($key, $way) {
-            if ($a[$key] == [$key]) {
+            if ($a[$key] == $b[$key]) {
                 return 0;
             }
             if ($way=='desc') {

@@ -35,7 +35,7 @@
 
 
             <?foreach ($arResult["OFFERS"] as $o=>$offer) {?>
-            
+
                 <div class="product__image-wrap <?if($o == 0){?>__selected<?}?>" data-color="<?=$offer["ID"]?>">
                     <div class="product__image js-image-slider" data-offer="<?=$offer["ID"]?>"> 
                         <?if ($offer["DETAIL_PICTURE"]["SRC"]){?>
