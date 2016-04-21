@@ -562,6 +562,9 @@
                     //добавляем/обновляем цены      
                     foreach ($priceList as $priceID){
                         $price = $importedSKU["CATALOG_PRICE_".$priceID];
+                        if (empty($price)) {
+                           $price = $offerItem[34];
+                        }
                         $dataPrice = array("PRODUCT_ID" => $SKU_ID, "PRICE" => $price, "CURRENCY" => "RUB", "CATALOG_GROUP_ID" => $priceID);
                         //проверяем существование данной цены
                         $res = CPrice::GetList(array(),array("PRODUCT_ID" => $SKU_ID, "CATALOG_GROUP_ID" => $priceID));
