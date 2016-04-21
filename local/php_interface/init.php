@@ -317,16 +317,21 @@
                 $resultArray[] = $tempArr;
 
             }
+            /*  //для отладки
+            else {
+                echo "товар ".$tempArr[5]." не соответствует требованиям: ".$tempArr[5]."-".$tempArr[0]."-".$tempArr[2]."<br>";
+            }  */
         }
         fclose($f);       
 
         $offers = array();
+        
+        
 
         foreach ($resultArray as $item) {   
             $offers[$item[5]][] = $item;       
-        }   
-
-
+        }    
+        
         $CATALOG_IBLOCK_ID = CATALOG_IBLOCK_ID; //каталог товаров
         $SKU_IBLOCK_ID = OFFERS_IBLOCK_ID; //инфоблок предложений
         $PARENT_SECTION = 1780; //родительский раздел для импортируемых товаров
