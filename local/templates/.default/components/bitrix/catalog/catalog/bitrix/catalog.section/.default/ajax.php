@@ -18,6 +18,7 @@
             //rooms
             case "r": 
                 $sections = CIBlockSection::GetList(array(),array("SECTION_ID"=>$value, "IBLOCK_ID"=>CATALOG_IBLOCK_ID));
+                //если нет подразделов, выбираем элементы
                 $sectionsCount = $sections->SelectedRowsCount();
                 if (!$sectionsCount) {
                     $items = CIBlockElement::GetList(array(),array("SECTION_ID"=>$value,"IBLOCK_ID"=>CATALOG_IBLOCK_ID),false,false,array("ID","NAME","DETAIL_PICTURE","DETAIL_PAGE_URL"));    

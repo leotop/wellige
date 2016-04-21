@@ -555,7 +555,7 @@
                 }
             }
 
-            $arResult["PRODUCT_TYPES"][] = $arProductType; 
+            $arResult["PRODUCT_TYPES"][$arProductType["ID"]] = $arProductType; 
         }
 
         //current style other collection
@@ -583,7 +583,7 @@
         } 
 
         shuffle($arResult["ROOM_TYPES"]);
-        
+
         //item types
         $productTypes = CIBlockProperty::GetPropertyEnum("PRODUCT_TYPE",array("VALUE"=>"ASC"),array("IBLOCK_ID"=>$arParams["IBLOCK_ID"]));
         while($arProductType = $productTypes->Fetch()) {
@@ -595,7 +595,7 @@
                 }
             }
 
-            $arResult["PRODUCT_TYPES"][] = $arProductType; 
+            $arResult["PRODUCT_TYPES"][$arProductType["ID"]] = $arProductType; 
         }
 
         //current style other collection
@@ -676,10 +676,14 @@
         //собираем варианты цветов дл€ комнаты
         if (is_array($arResult["SECTIONS"][4][$arResult["ID"]]["UF_COLOR_VARIANTS"]) && count($arResult["SECTIONS"][4][$arResult["ID"]]["UF_COLOR_VARIANTS"]) > 0) {
             //собираем образцы цветов
-            $colorList = CIBLockELement::GetList(array(),array("IBLOCK_CODE"=>"colors"),false,false,array("PROPERTY_COLOR_TEMPLATE","NAME","ID","DETAIL_PICTURE","DETAIL_TEXT"));
+            $colorList = CIBLockELement::GetList(array(),array("IBLOCK_CODE"=>"colors"),false,false,array("PROPERTY_COLOR_TEMPLATE", "PROPERTY_SERVICE_NAME", "NAME","ID","DETAIL_PICTURE","DETAIL_TEXT"));
             while($arColor = $colorList->Fetch()) {
                 $arColorPath = CFile::ResizeImageGet($arColor["PROPERTY_COLOR_TEMPLATE_VALUE"],array("width"=>130,"height"=>130),BX_RESIZE_IMAGE_EXACT);
                 $arColor["COLOR_TEMPLATE_PATH"] = $arColorPath["src"];
+                //если есть служебное название - выводим его вместо обычного названи€
+                if (!empty($arColor["PROPERTY_SERVICE_NAME_VALUE"])) {
+                   $arColor["NAME"] = $arColor["PROPERTY_SERVICE_NAME_VALUE"]; 
+                }
                 $arResult["COLORS_LIST"][$arColor["ID"]] = $arColor;
             }
             //
@@ -750,13 +754,13 @@
 
     $arResult["TOTAL_PRICE"] = 0;
     foreach ($arResult["ITEMS"] as $i=>$item) {
-        
+
         //ресайз изображений
         $img = CFIle::ResizeImageGet($item["DETAIL_PICTURE"]["ID"],array("width"=>446,"height"=>300),BX_RESIZE_IMAGE_EXACT);
         $arResult["ITEMS"][$i]["DETAIL_PICTURE"]["SRC"] = $img["src"];
         //если у товара есть предложени€
         if (is_array($item["OFFERS"]) && count($item["OFFERS"]) > 0) {  
-            
+
             $minOfferPrice = 0;     
             foreach ($item["OFFERS"] as $o=>$offer) {
                 foreach($arResult["PRICES"] as $code=>$arPrice){                        
@@ -792,5 +796,30 @@
     } 
 
     $arResult["TOTAL_PRICE"] = number_format($arResult["TOTAL_PRICE"], 0 , "." , " ");
+
+    //провер€ем наличие товаров каждого типа
+    if (is_array($arResult["PRODUCT_TYPES"]) && count($arResult["PRODUCT_TYPES"]) > 0) {
+        if ($arResult["DEPTH_LEVEL"] == 3) {
+            $sectionID = $arResult["IBLOCK_SECTION_ID"];
+        } else if ($arResult["DEPTH_LEVEL"] == 2) {
+            $sectionID = $arResult["ID"];
+        }                             
+
+        //собираем ID типов товаров, которые есть в данной коллекции
+        $sectionProductTypes = array(); //массив ID типов товаров в текущей коллекции
+        $itemsCheck = CIBlockElement::GetList(array(),array("SECTION_ID"=>$sectionID, "INCLUDE_SUBSECTIONS"=>"Y"),false,false,array("ID","PROPERTY_PRODUCT_TYPE"));
+        while($arItemsCheck = $itemsCheck->Fetch()) {
+            $sectionProductTypes[$arItemsCheck["PROPERTY_PRODUCT_TYPE_ENUM_ID"]] = $arItemsCheck["PROPERTY_PRODUCT_TYPE_ENUM_ID"];
+        }
+
+        //провер€ем, товары каких типов есть в коллекции. ≈сли товаров какого-то типа нет - удал€ем данный тип из списка
+        foreach ($arResult["PRODUCT_TYPES"] as $tID => $type) {
+            if (!in_array($type["ID"],$sectionProductTypes)) {
+                unset($arResult["PRODUCT_TYPES"][$tID]);
+            }
+        }                
+    }
+
+
 
 ?>

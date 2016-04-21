@@ -594,7 +594,7 @@
     }
 
     global $arWaterMark; //задается в init.php
-    
+
     //собираем все материалы
     $materials = CIBlockElement::GetList(array("SORT"=>"ASC"),array("IBLOCK_CODE"=>"materials","ACTIVE"=>"Y"),false,false,array("ID","NAME"));
     while($arMaterial = $materials->Fetch()) {
@@ -620,13 +620,17 @@
 
 
     //собираем цвета
-    $colorList = CIBLockELement::GetList(array(),array("IBLOCK_CODE"=>"colors"),false,false,array("PROPERTY_COLOR_TEMPLATE","NAME","ID","DETAIL_PICTURE","DETAIL_TEXT"));
+    $colorList = CIBLockELement::GetList(array(),array("IBLOCK_CODE"=>"colors"),false,false,array("PROPERTY_COLOR_TEMPLATE", "PROPERTY_SERVICE_NAME", "NAME","ID","DETAIL_PICTURE","DETAIL_TEXT"));
     while($arColor = $colorList->Fetch()) {
         $arColorPath = CFile::ResizeImageGet($arColor["PROPERTY_COLOR_TEMPLATE_VALUE"],array("width"=>85,"height"=>85),BX_RESIZE_IMAGE_EXACT);
         $arColor["COLOR_TEMPLATE_PATH"] = $arColorPath["src"];
+        //если есть служебное название - выводим его вместо обычного названия
+        if (!empty($arColor["PROPERTY_SERVICE_NAME_VALUE"])) {
+            $arColor["NAME"] = $arColor["PROPERTY_SERVICE_NAME_VALUE"]; 
+        }
         $arResult["COLORS_LIST"][$arColor["ID"]] = $arColor;
     }          
-    
+
 
     //собираем элементы для блока "обрати внимание"
     if (is_array($arResult["PROPERTIES"]["ATTENTION"]["VALUE"]) && count($arResult["PROPERTIES"]["ATTENTION"]["VALUE"]) > 0) { 
@@ -700,8 +704,8 @@
             }          
         } 
     }
-    
-   
+
+
 
     //заменяем основную картинку, доп картинки и картинки предложений
     //основная картинка
@@ -760,6 +764,6 @@
     }
 
     usort($arResult["OFFERS"], customSorting(strtoupper($arParams["OFFERS_SORT_FIELD"]), $arParams["OFFERS_SORT_ORDER"]));
-    
+
 
 ?>
