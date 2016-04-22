@@ -616,20 +616,41 @@
     //room page
     if ($arResult["DEPTH_LEVEL"] == 4) {
         //собирае инфо о магазинах
-        if (is_array($arResult["SECTIONS"][4][$arResult["ID"]]["UF_SHOPS"]) && count($arResult["SECTIONS"][4][$arResult["ID"]]["UF_SHOPS"]) > 0) {
 
-            //собираем станции метро
-            $stations = CIBlockElement::GetList(array(),array("IBLOCK_CODE"=>"metro"),false,false,array("ID","NAME","PROPERTY_LINE_COLOR"));
-            while($arStation = $stations->Fetch()) {
-                $arResult["METRO"][$arStation["ID"]] = $arStation;
-            }
-            //список магазинов
-            $shops = CIBLockElement::GetList(array(), array("IBLOCK_CODE"=>"shops","ID"=>$arResult["SECTIONS"][4][$arResult["ID"]]["UF_SHOPS"]),false,false,array("PROPERTY_METRO","NAME","ID","DETAIL_PAGE_URL","DETAIL_PICTURE")) ;
-            while($arShop = $shops->GetNext()) {
-                $arShop["METRO"] = array("NAME"=>$arResult["METRO"][$arShop["PROPERTY_METRO_VALUE"]]["NAME"],"COLOR"=>$arResult["METRO"][$arShop["PROPERTY_METRO_VALUE"]]["PROPERTY_LINE_COLOR_VALUE"],"ID"=>$arResult["METRO"][$arShop["PROPERTY_METRO_VALUE"]]["ID"]);
-                $arResult["SHOPS"][] = $arShop;  
+        //собираем ID складов, на которых есть товары из данной комнаты, тобы отобразить соответствующие магазины
+        $itemId = array(); //ID товаров/ТП
+        foreach ($arResult["ITEMS"] as $arItem) {
+            if (is_array($arItem["OFFERS"]) && count($arItem["OFFERS"]) > 0) {
+                foreach ($arItem["OFFERS"] as $offer) {
+                    $itemId[] = $offer["ID"]; 
+                }
+            } else {
+                $itemId[] = $arItem["ID"]; 
             }
         } 
+
+        $arStoresID = array();        
+        $rsStore = CCatalogStoreProduct::GetList(array(), array("PRODUCT_ID" =>$itemId, ">AMOUNT"=>0), false, false, array("STORE_ID")); 
+        while ($arStore = $rsStore->Fetch()) {
+            $arStoresID[] = $arStore["STORE_ID"];
+        }     
+
+        $arStoresID = array_unique($arStoresID);        
+
+        $arResult["ITEM_STORES"] = $arStoresID;
+        
+        //собираем станции метро
+        $stations = CIBlockElement::GetList(array(),array("IBLOCK_CODE"=>"metro"),false,false,array("ID","NAME","PROPERTY_LINE_COLOR"));
+        while($arStation = $stations->Fetch()) {
+            $arResult["METRO"][$arStation["ID"]] = $arStation;
+        }    
+        //список магазинов
+        $shops = CIBLockElement::GetList(array(), array("IBLOCK_CODE"=>"shops","PROPERTY_WAREHOUSE"=>$arResult["ITEM_STORES"]),false,false,array("PROPERTY_METRO","NAME","ID","DETAIL_PAGE_URL","DETAIL_PICTURE")) ;
+        while($arShop = $shops->GetNext()) {
+            $arShop["METRO"] = array("NAME"=>$arResult["METRO"][$arShop["PROPERTY_METRO_VALUE"]]["NAME"],"COLOR"=>$arResult["METRO"][$arShop["PROPERTY_METRO_VALUE"]]["PROPERTY_LINE_COLOR_VALUE"],"ID"=>$arResult["METRO"][$arShop["PROPERTY_METRO_VALUE"]]["ID"]);
+            $arResult["SHOPS"][] = $arShop;  
+        }
+
 
         //собираем элементы для блока "обрати внимание"
         if (is_array($arResult["SECTIONS"][4][$arResult["ID"]]["UF_ATTENTION"]) && count($arResult["SECTIONS"][4][$arResult["ID"]]["UF_ATTENTION"]) > 0) { 
@@ -682,7 +703,7 @@
                 $arColor["COLOR_TEMPLATE_PATH"] = $arColorPath["src"];
                 //если есть служебное название - выводим его вместо обычного названия
                 if (!empty($arColor["PROPERTY_SERVICE_NAME_VALUE"])) {
-                   $arColor["NAME"] = $arColor["PROPERTY_SERVICE_NAME_VALUE"]; 
+                    $arColor["NAME"] = $arColor["PROPERTY_SERVICE_NAME_VALUE"]; 
                 }
                 $arResult["COLORS_LIST"][$arColor["ID"]] = $arColor;
             }

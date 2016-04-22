@@ -593,21 +593,21 @@
         }
     }
 
-    global $arWaterMark; //çàäàåòñÿ â init.php
+    global $arWaterMark; //Ð·Ð°Ð´Ð°ÐµÑ‚ÑÑ Ð² init.php
 
-    //ñîáèðàåì âñå ìàòåðèàëû
+    //ÑÐ¾Ð±Ð¸Ñ€Ð°ÐµÐ¼ Ð²ÑÐµ Ð¼Ð°Ñ‚ÐµÑ€Ð¸Ð°Ð»Ñ‹
     $materials = CIBlockElement::GetList(array("SORT"=>"ASC"),array("IBLOCK_CODE"=>"materials","ACTIVE"=>"Y"),false,false,array("ID","NAME"));
     while($arMaterial = $materials->Fetch()) {
         $arResult["MATERIALS"][$arMaterial["ID"]] = $arMaterial["NAME"];
     }
 
-    //ñîáèðàåì âñå ôóðíèòóðó
+    //ÑÐ¾Ð±Ð¸Ñ€Ð°ÐµÐ¼ Ð²ÑÐµ Ñ„ÑƒÑ€Ð½Ð¸Ñ‚ÑƒÑ€Ñƒ
     $findings = CIBlockElement::GetList(array("SORT"=>"ASC"),array("IBLOCK_CODE"=>"findings","ACTIVE"=>"Y"),false,false,array("ID","NAME"));
     while($arFindings = $findings->Fetch()) {
         $arResult["FINDINGS"][$arFindings["ID"]] = $arFindings["NAME"];
     }
 
-    //ñîáèðàåì âñå ðàçäåëû
+    //ÑÐ¾Ð±Ð¸Ñ€Ð°ÐµÐ¼ Ð²ÑÐµ Ñ€Ð°Ð·Ð´ÐµÐ»Ñ‹
     $allSections = CIBlockSection::GetList(array("LEFT_MARGIN"=>"ASC"),array("IBLOCK_ID"=>$arParams["IBLOCK_ID"]),false,array("UF_*")); 
     while($arSection = $allSections->GetNext()) {
         //current section info
@@ -619,12 +619,12 @@
     }
 
 
-    //ñîáèðàåì öâåòà
+    //ÑÐ¾Ð±Ð¸Ñ€Ð°ÐµÐ¼ Ñ†Ð²ÐµÑ‚Ð°
     $colorList = CIBLockELement::GetList(array(),array("IBLOCK_CODE"=>"colors"),false,false,array("PROPERTY_COLOR_TEMPLATE", "PROPERTY_SERVICE_NAME", "NAME","ID","DETAIL_PICTURE","DETAIL_TEXT"));
     while($arColor = $colorList->Fetch()) {
         $arColorPath = CFile::ResizeImageGet($arColor["PROPERTY_COLOR_TEMPLATE_VALUE"],array("width"=>85,"height"=>85),BX_RESIZE_IMAGE_EXACT);
         $arColor["COLOR_TEMPLATE_PATH"] = $arColorPath["src"];
-        //åñëè åñòü ñëóæåáíîå íàçâàíèå - âûâîäèì åãî âìåñòî îáû÷íîãî íàçâàíèÿ
+        //ÐµÑÐ»Ð¸ ÐµÑÑ‚ÑŒ ÑÐ»ÑƒÐ¶ÐµÐ±Ð½Ð¾Ðµ Ð½Ð°Ð·Ð²Ð°Ð½Ð¸Ðµ - Ð²Ñ‹Ð²Ð¾Ð´Ð¸Ð¼ ÐµÐ³Ð¾ Ð²Ð¼ÐµÑÑ‚Ð¾ Ð¾Ð±Ñ‹Ñ‡Ð½Ð¾Ð³Ð¾ Ð½Ð°Ð·Ð²Ð°Ð½Ð¸Ñ
         if (!empty($arColor["PROPERTY_SERVICE_NAME_VALUE"])) {
             $arColor["NAME"] = $arColor["PROPERTY_SERVICE_NAME_VALUE"]; 
         }
@@ -632,22 +632,22 @@
     }          
 
 
-    //ñîáèðàåì ýëåìåíòû äëÿ áëîêà "îáðàòè âíèìàíèå"
+    //ÑÐ¾Ð±Ð¸Ñ€Ð°ÐµÐ¼ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ñ‹ Ð´Ð»Ñ Ð±Ð»Ð¾ÐºÐ° "Ð¾Ð±Ñ€Ð°Ñ‚Ð¸ Ð²Ð½Ð¸Ð¼Ð°Ð½Ð¸Ðµ"
     if (is_array($arResult["PROPERTIES"]["ATTENTION"]["VALUE"]) && count($arResult["PROPERTIES"]["ATTENTION"]["VALUE"]) > 0) { 
 
-        //ïîëó÷àåì ID êîëëåêöèè
+        //Ð¿Ð¾Ð»ÑƒÑ‡Ð°ÐµÐ¼ ID ÐºÐ¾Ð»Ð»ÐµÐºÑ†Ð¸Ð¸
         $roomID = $arResult["IBLOCK_SECTION_ID"];
         $roomTypeID = $arResult["SECTIONS"][4][$roomID]["IBLOCK_SECTION_ID"];
         $collectionID = $arResult["SECTIONS"][3][$roomTypeID]["IBLOCK_SECTION_ID"];
 
         $ids = $arResult["PROPERTIES"]["ATTENTION"]["VALUE"]; 
-        //âûáèðàåì âñå ýëåìåíòû, ïðèâÿçàííûå ê òåêóùåìó ðàçäåëó, à òàêæå ýëåìåíòû, îòíîñÿùèåñÿ êî âñåì ðàçäåëàì (ñâîéñòâî FOR_ALL)
+        //Ð²Ñ‹Ð±Ð¸Ñ€Ð°ÐµÐ¼ Ð²ÑÐµ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ñ‹, Ð¿Ñ€Ð¸Ð²ÑÐ·Ð°Ð½Ð½Ñ‹Ðµ Ðº Ñ‚ÐµÐºÑƒÑ‰ÐµÐ¼Ñƒ Ñ€Ð°Ð·Ð´ÐµÐ»Ñƒ, Ð° Ñ‚Ð°ÐºÐ¶Ðµ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ñ‹, Ð¾Ñ‚Ð½Ð¾ÑÑÑ‰Ð¸ÐµÑÑ ÐºÐ¾ Ð²ÑÐµÐ¼ Ñ€Ð°Ð·Ð´ÐµÐ»Ð°Ð¼ (ÑÐ²Ð¾Ð¹ÑÑ‚Ð²Ð¾ FOR_ALL)
         $attention = CIBLockElement::GetList(array(), array("IBLOCK_CODE"=>"attention",array("LOGIC" => "OR",array("ID" => $ids),array("PROPERTY_FOR_ALL"=>$collectionID))),false,false,array("PROPERTY_VIDEO_LINK","NAME","ID","DETAIL_PICTURE","DETAIL_TEXT","PROPERTY_VISIBLE_NAME"));
         while($arAttentionItem = $attention->GetNext()) {
             if ($arAttentionItem["DETAIL_PICTURE"]) {
 
                 $imgID = $arAttentionItem["DETAIL_PICTURE"];
-                //íàêëàäûâàåì âîäÿíîé çíàê íà äåòàëüíóþ êàðòèíêó
+                //Ð½Ð°ÐºÐ»Ð°Ð´Ñ‹Ð²Ð°ÐµÐ¼ Ð²Ð¾Ð´ÑÐ½Ð¾Ð¹ Ð·Ð½Ð°Ðº Ð½Ð° Ð´ÐµÑ‚Ð°Ð»ÑŒÐ½ÑƒÑŽ ÐºÐ°Ñ€Ñ‚Ð¸Ð½ÐºÑƒ
                 $detailPictureSrc = CFile::ResizeImageGet($arAttentionItem["DETAIL_PICTURE"],array("width"=>920,"height"=>620),BX_RESIZE_IMAGE_PROPORTIONAL,true,$arWaterMark);
 
                 $sourseImgLink = $detailPictureSrc["src"];
@@ -676,7 +676,7 @@
         }
     }
 
-    //ñîáèðàåì ýëåìåíòû äëÿ áëîêà "óõîä çà ìåáåëüþ"
+    //ÑÐ¾Ð±Ð¸Ñ€Ð°ÐµÐ¼ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ñ‹ Ð´Ð»Ñ Ð±Ð»Ð¾ÐºÐ° "ÑƒÑ…Ð¾Ð´ Ð·Ð° Ð¼ÐµÐ±ÐµÐ»ÑŒÑŽ"
     if ($arResult["PROPERTIES"]["CARE"]["VALUE"]) {
         $careElements = CIBLockElement::GetList(array(),array("IBLOCK_CODE"=>"furniture_care","SECTION_ID"=>$arResult["PROPERTIES"]["CARE"]["VALUE"]),false,false,array("ID","NAME","PREVIEW_PICTURE","PREVIEW_TEXT"));
         while($arCareElement = $careElements->Fetch()) {
@@ -686,7 +686,7 @@
         }
     }
 
-    //ñîáèðàåì äðóãèå ýëåìåíòû äàííîãî ðàçäåëà
+    //ÑÐ¾Ð±Ð¸Ñ€Ð°ÐµÐ¼ Ð´Ñ€ÑƒÐ³Ð¸Ðµ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ñ‹ Ð´Ð°Ð½Ð½Ð¾Ð³Ð¾ Ñ€Ð°Ð·Ð´ÐµÐ»Ð°
     if(!$arResult["PROPERTIES"]["OTHER_PRODUCTS"]["VALUE"]){
         $otherItems_new = CIBLockElement::GetList(array("RAND"=>"ASC"),array("IBLOCK_ID"=>$arParams["IBLOCK_ID"],"SECTION_ID"=>$arResult["IBLOCK_SECTION_ID"],"!ID"=>$arResult["ID"]),false,false,array("ID","NAME","DETAIL_PAGE_URL","DETAIL_PICTURE"));
         while($arItem = $otherItems_new->GetNext()) {
@@ -707,17 +707,17 @@
 
 
 
-    //çàìåíÿåì îñíîâíóþ êàðòèíêó, äîï êàðòèíêè è êàðòèíêè ïðåäëîæåíèé
-    //îñíîâíàÿ êàðòèíêà
+    //Ð·Ð°Ð¼ÐµÐ½ÑÐµÐ¼ Ð¾ÑÐ½Ð¾Ð²Ð½ÑƒÑŽ ÐºÐ°Ñ€Ñ‚Ð¸Ð½ÐºÑƒ, Ð´Ð¾Ð¿ ÐºÐ°Ñ€Ñ‚Ð¸Ð½ÐºÐ¸ Ð¸ ÐºÐ°Ñ€Ñ‚Ð¸Ð½ÐºÐ¸ Ð¿Ñ€ÐµÐ´Ð»Ð¾Ð¶ÐµÐ½Ð¸Ð¹
+    //Ð¾ÑÐ½Ð¾Ð²Ð½Ð°Ñ ÐºÐ°Ñ€Ñ‚Ð¸Ð½ÐºÐ°
     $mainImg = CFile::ResizeImageGet($arResult["DETAIL_PICTURE"]["ID"],array("width"=>920,"height"=>620),BX_RESIZE_IMAGE_EXACT,true,$arWaterMark);
     $arResult["DETAIL_PICTURE"]["SRC"] = $mainImg["src"];
-    //êàðòèíêè ïðåäëîæåíèé (îñíîâíûå è äîïîëíèòåëüíûå)
+    //ÐºÐ°Ñ€Ñ‚Ð¸Ð½ÐºÐ¸ Ð¿Ñ€ÐµÐ´Ð»Ð¾Ð¶ÐµÐ½Ð¸Ð¹ (Ð¾ÑÐ½Ð¾Ð²Ð½Ñ‹Ðµ Ð¸ Ð´Ð¾Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ñ‹Ðµ)
     if (is_array($arResult["OFFERS"]) && count($arResult["OFFERS"]) > 0) {
         foreach ($arResult["OFFERS"] as $o=>$offer) {
-            //îñíîâíàÿ êàðòèíêà ïðåäëîæåíèÿ
+            //Ð¾ÑÐ½Ð¾Ð²Ð½Ð°Ñ ÐºÐ°Ñ€Ñ‚Ð¸Ð½ÐºÐ° Ð¿Ñ€ÐµÐ´Ð»Ð¾Ð¶ÐµÐ½Ð¸Ñ
             $offerImg = CFile::ResizeImageGet($offer["DETAIL_PICTURE"]["ID"],array("width"=>920,"height"=>620),BX_RESIZE_IMAGE_EXACT,true,$arWaterMark);
             $arResult["OFFERS"][$o]["DETAIL_PICTURE"]["SRC"] = $offerImg["src"]; 
-            //äîïîëíèòåëüíûå
+            //Ð´Ð¾Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ñ‹Ðµ
             if (is_array($offer["PROPERTIES"]["MORE_FOTO"]["VALUE"]) && count($offer["PROPERTIES"]["MORE_FOTO"]["VALUE"]) > 0) {
                 foreach ($offer["PROPERTIES"]["MORE_FOTO"]["VALUE"] as $fID=>$foto) {
                     $imgAddFoto = CFile::ResizeImageGet($foto,array("width"=>920,"height"=>620),BX_RESIZE_IMAGE_EXACT,true,$arWaterMark);
@@ -728,7 +728,7 @@
         }
     }
 
-    //äîï êàðòèíêè äëÿ òîâàðà áåç ïðåäëîæåíèé
+    //Ð´Ð¾Ð¿ ÐºÐ°Ñ€Ñ‚Ð¸Ð½ÐºÐ¸ Ð´Ð»Ñ Ñ‚Ð¾Ð²Ð°Ñ€Ð° Ð±ÐµÐ· Ð¿Ñ€ÐµÐ´Ð»Ð¾Ð¶ÐµÐ½Ð¸Ð¹
     if (is_array($arResult["PROPERTIES"]["MORE_FOTO"]["VALUE"]) && count($arResult["PROPERTIES"]["MORE_FOTO"]["VALUE"]) > 0) {
         foreach ($arResult["PROPERTIES"]["MORE_FOTO"]["VALUE"] as $i=>$image) {
             $offerImg = CFile::ResizeImageGet($image,array("width"=>920,"height"=>620),BX_RESIZE_IMAGE_EXACT,true,$arWaterMark);
@@ -736,13 +736,13 @@
             $arResult["PROPERTIES"]["MORE_FOTO"]["ORIGINAL_VALUE"][$i] = CFile::GetFileArray($image);
         }
     }       
-    //ìàòåðèàëû
+    //Ð¼Ð°Ñ‚ÐµÑ€Ð¸Ð°Ð»Ñ‹
     if (is_array($arResult["PROPERTIES"]["MATERIALS"]["VALUE"]) && count($arResult["PROPERTIES"]["MATERIALS"]["VALUE"]) > 0) {
         foreach ($arResult["PROPERTIES"]["MATERIALS"]["VALUE"] as $i=>$item) {
             $arResult["PROPERTIES"]["MATERIALS"]["DISPLAY_VALUE"][$i] = $arResult["MATERIALS"][$item]; 
         }
     }
-    // ôóðíèòóðà
+    // Ñ„ÑƒÑ€Ð½Ð¸Ñ‚ÑƒÑ€Ð°
     if (is_array($arResult["PROPERTIES"]["IMPLEMENT"]["VALUE"]) && count($arResult["PROPERTIES"]["IMPLEMENT"]["VALUE"]) > 0) {
         foreach ($arResult["PROPERTIES"]["IMPLEMENT"]["VALUE"] as $i=>$item) {
             $arResult["PROPERTIES"]["IMPLEMENT"]["DISPLAY_VALUE"][$i] = $arResult["FINDINGS"][$item]; 
@@ -765,5 +765,37 @@
 
     usort($arResult["OFFERS"], customSorting(strtoupper($arParams["OFFERS_SORT_FIELD"]), $arParams["OFFERS_SORT_ORDER"]));
 
+    //Ð¿Ñ€Ð¾Ð²ÐµÑ€ÑÐµÐ¼ Ð½Ð°Ð»Ð¸Ñ‡Ð¸Ðµ Ñ‚Ð¾Ð²Ð°Ñ€Ð° Ð¸ Ð¢ÐŸ Ð½Ð° ÑÐºÐ»Ð°Ð´Ð°Ñ…
+    $itemId = $arResult["ID"];
+
+    //ÐµÑÐ»Ð¸ Ñƒ Ñ‚Ð¾Ð²Ð°Ñ€Ð° ÐµÑÑ‚ÑŒ Ð¢ÐŸ? Ñ‚Ð¾ Ð¿Ñ€Ð¾Ð²ÐµÑ€ÑÐµÐ¼ Ð¸Ñ… ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾
+    if (is_array($arResult["OFFERS"]) && count($arResult["OFFERS"]) > 0) {
+        $itemId = array();
+        foreach ($arResult["OFFERS"] as $offer) {
+            $itemId[] = $offer["ID"]; 
+        }
+    }     
+
+    //ÑÐ¾Ð±Ð¸Ñ€Ð°ÐµÐ¼ ÑÐºÐ»Ð°Ð´Ñ‹, Ð³Ð´Ðµ Ñ‚Ð¾Ð²Ð°Ñ€ Ð² Ð½Ð°Ð»Ð¸Ñ‡Ð¸Ð¸
+    $arStoresID = array();        
+    $rsStore = CCatalogStoreProduct::GetList(array(), array("PRODUCT_ID" =>$itemId, ">AMOUNT"=>0), false, false, array("STORE_ID")); 
+    while ($arStore = $rsStore->Fetch()) {
+        $arStoresID[] = $arStore["STORE_ID"];
+    }
+
+    $arResult["ITEM_STORES"] = $arStoresID;
+
+    //ÑÐ¾Ð±Ð¸Ñ€Ð°ÐµÐ¼ ÑÑ‚Ð°Ð½Ñ†Ð¸Ð¸ Ð¼ÐµÑ‚Ñ€Ð¾
+    $stations = CIBlockElement::GetList(array(),array("IBLOCK_CODE"=>"metro"),false,false,array("ID","NAME","PROPERTY_LINE_COLOR"));
+    while($arStation = $stations->Fetch()) {
+        $arResult["METRO"][$arStation["ID"]] = $arStation;
+    }
+    //ÑÐ¿Ð¸ÑÐ¾Ðº Ð¼Ð°Ð³Ð°Ð·Ð¸Ð½Ð¾Ð²
+    $shops = CIBLockElement::GetList(array(), array("IBLOCK_CODE"=>"shops","PROPERTY_WAREHOUSE"=>$arResult["ITEM_STORES"]),false,false,array("PROPERTY_METRO","NAME","ID","DETAIL_PAGE_URL","DETAIL_PICTURE")) ;
+    while($arShop = $shops->GetNext()) {
+        $arShop["METRO"] = array("NAME"=>$arResult["METRO"][$arShop["PROPERTY_METRO_VALUE"]]["NAME"],"COLOR"=>$arResult["METRO"][$arShop["PROPERTY_METRO_VALUE"]]["PROPERTY_LINE_COLOR_VALUE"],"ID"=>$arResult["METRO"][$arShop["PROPERTY_METRO_VALUE"]]["ID"]);
+        $arResult["SHOPS"][] = $arShop;  
+    }
+    
 
 ?>

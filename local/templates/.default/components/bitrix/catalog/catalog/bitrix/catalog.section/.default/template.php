@@ -525,6 +525,7 @@
                     </div>  
                 </div>
             </div>
+            
             <?if (is_array($arResult["SHOPS"]) && count($arResult["SHOPS"]) > 0) {?> 
                 <section class="library-stores js-hidden" data-target='stores'>
 
