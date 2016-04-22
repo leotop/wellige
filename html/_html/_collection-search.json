@@ -2,17 +2,17 @@
     "searchItems": [
         {
             "title": "Библиотека «Лагос» №1",
-            "img": "/img/search-icon.jpg",
+            "img": "/tpl/img/search-icon.jpg",
             "link": "/_html/library.html"
         },
         {
             "title": "Библиотека «Лагос» №2",
-            "img": "/img/search-icon.jpg",
+            "img": "/tpl/img/search-icon.jpg",
             "link": "/_html/library.html"
         },
         {
             "title": "Библиотека «Лагос» №3",
-            "img": "/img/search-icon.jpg",
+            "img": "/tpl/img/search-icon.jpg",
             "link": "/_html/library.html"
         }
     ]
