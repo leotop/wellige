@@ -480,7 +480,7 @@
     global $arWaterMark;
 
 
-    $allSections = CIBlockSection::GetList(array("LEFT_MARGIN"=>"ASC"),array("IBLOCK_ID"=>$arParams["IBLOCK_ID"]),false,array("UF_*")); 
+    $allSections = CIBlockSection::GetList(array("LEFT_MARGIN"=>"ASC"),array("IBLOCK_ID"=>$arParams["IBLOCK_ID"], "ACTIVE"=>"Y"),false,array("UF_*")); 
     while($arSection = $allSections->GetNext()) {
         //current section info
         if ($arSection["ID"] == $arResult["ID"]) {
@@ -530,7 +530,7 @@
         }
 
         //room types
-        $roomTypes = CIBlockSection::GetList(array(),array("IBLOCK_ID"=>$arParams["IBLOCK_ID"],"SECTION_ID"=>$arResult["ID"]),true);
+        $roomTypes = CIBlockSection::GetList(array(),array("IBLOCK_ID"=>$arParams["IBLOCK_ID"],"SECTION_ID"=>$arResult["ID"], "ACTIVE"=>"Y"),true);
         while($arRoomType = $roomTypes->GetNext()) {
             $arRoomType["ROOMS"] = 0;
             //current type rooms
@@ -577,7 +577,7 @@
         }
 
         //room types
-        $roomTypes = CIBlockSection::GetList(array(),array("IBLOCK_ID"=>$arParams["IBLOCK_ID"],"SECTION_ID"=>$arResult["IBLOCK_SECTION_ID"]),true);
+        $roomTypes = CIBlockSection::GetList(array(),array("IBLOCK_ID"=>$arParams["IBLOCK_ID"],"SECTION_ID"=>$arResult["IBLOCK_SECTION_ID"], "ACTIVE"=>"Y"),true);
         while($arRoomType = $roomTypes->GetNext()) {
             $arResult["ROOM_TYPES"][] = $arRoomType;
         } 
@@ -645,7 +645,7 @@
             $arResult["METRO"][$arStation["ID"]] = $arStation;
         }    
         //список магазинов
-        $shops = CIBLockElement::GetList(array(), array("IBLOCK_CODE"=>"shops","PROPERTY_WAREHOUSE"=>$arResult["ITEM_STORES"]),false,false,array("PROPERTY_METRO","NAME","ID","DETAIL_PAGE_URL","DETAIL_PICTURE")) ;
+        $shops = CIBLockElement::GetList(array(), array("IBLOCK_CODE"=>"shops","PROPERTY_WAREHOUSE"=>$arResult["ITEM_STORES"], "ACTIVE"=>"Y"),false,false,array("PROPERTY_METRO","NAME","ID","DETAIL_PAGE_URL","DETAIL_PICTURE")) ;
         while($arShop = $shops->GetNext()) {
             $arShop["METRO"] = array("NAME"=>$arResult["METRO"][$arShop["PROPERTY_METRO_VALUE"]]["NAME"],"COLOR"=>$arResult["METRO"][$arShop["PROPERTY_METRO_VALUE"]]["PROPERTY_LINE_COLOR_VALUE"],"ID"=>$arResult["METRO"][$arShop["PROPERTY_METRO_VALUE"]]["ID"]);
             $arResult["SHOPS"][] = $arShop;  
@@ -661,7 +661,7 @@
 
             $ids = $arResult["SECTIONS"][4][$arResult["ID"]]["UF_ATTENTION"]; 
             //выбираем все элементы, привязанные к текущему разделу, а также элементы, относящиеся ко всем разделам (свойство FOR_ALL)
-            $attention = CIBLockElement::GetList(array(), array("IBLOCK_CODE"=>"attention",array("LOGIC" => "OR",array("ID" => $ids),array("PROPERTY_FOR_ALL"=>$collectionID))),false,false,array("PROPERTY_VIDEO_LINK","NAME","ID","DETAIL_PICTURE","DETAIL_TEXT","PROPERTY_VISIBLE_NAME"));
+            $attention = CIBLockElement::GetList(array(), array("IBLOCK_CODE"=>"attention",array("LOGIC" => "OR",array("ID" => $ids),array("PROPERTY_FOR_ALL"=>$collectionID)), "ACTIVE"=>"Y"),false,false,array("PROPERTY_VIDEO_LINK","NAME","ID","DETAIL_PICTURE","DETAIL_TEXT","PROPERTY_VISIBLE_NAME"));
             while($arAttentionItem = $attention->GetNext()) {
                 if ($arAttentionItem["DETAIL_PICTURE"]) {
 
@@ -697,7 +697,7 @@
         //собираем варианты цветов для комнаты
         if (is_array($arResult["SECTIONS"][4][$arResult["ID"]]["UF_COLOR_VARIANTS"]) && count($arResult["SECTIONS"][4][$arResult["ID"]]["UF_COLOR_VARIANTS"]) > 0) {
             //собираем образцы цветов
-            $colorList = CIBLockELement::GetList(array(),array("IBLOCK_CODE"=>"colors"),false,false,array("PROPERTY_COLOR_TEMPLATE", "PROPERTY_SERVICE_NAME", "NAME","ID","DETAIL_PICTURE","DETAIL_TEXT"));
+            $colorList = CIBLockELement::GetList(array(),array("IBLOCK_CODE"=>"colors", "ACTIVE"=>"Y"),false,false,array("PROPERTY_COLOR_TEMPLATE", "PROPERTY_SERVICE_NAME", "NAME","ID","DETAIL_PICTURE","DETAIL_TEXT"));
             while($arColor = $colorList->Fetch()) {
                 $arColorPath = CFile::ResizeImageGet($arColor["PROPERTY_COLOR_TEMPLATE_VALUE"],array("width"=>130,"height"=>130),BX_RESIZE_IMAGE_EXACT);
                 $arColor["COLOR_TEMPLATE_PATH"] = $arColorPath["src"];
@@ -709,7 +709,7 @@
             }
             //
             $ids = $arResult["SECTIONS"][4][$arResult["ID"]]["UF_COLOR_VARIANTS"];
-            $sectionColors = CIBlockElement::GetList(array("SORT"=>"ASC"),array("IBLOCK_CODE"=>"rooms_colors","ID"=>$ids),false,false,array("ID","NAME","PROPERTY_COLOR","DETAIL_PICTURE","DETAIL_TEXT"));
+            $sectionColors = CIBlockElement::GetList(array("SORT"=>"ASC"),array("IBLOCK_CODE"=>"rooms_colors","ID"=>$ids, "ACTIVE"=>"Y"),false,false,array("ID","NAME","PROPERTY_COLOR","DETAIL_PICTURE","DETAIL_TEXT"));
             while($arSectionColor = $sectionColors->Fetch()) {
                 $arResult["SECTION_COLORS"][] = $arSectionColor;
             }
@@ -828,7 +828,7 @@
 
         //собираем ID типов товаров, которые есть в данной коллекции
         $sectionProductTypes = array(); //массив ID типов товаров в текущей коллекции
-        $itemsCheck = CIBlockElement::GetList(array(),array("SECTION_ID"=>$sectionID, "INCLUDE_SUBSECTIONS"=>"Y"),false,false,array("ID","PROPERTY_PRODUCT_TYPE"));
+        $itemsCheck = CIBlockElement::GetList(array(),array("SECTION_ID"=>$sectionID, "INCLUDE_SUBSECTIONS"=>"Y", "ACTIVE"=>"Y"),false,false,array("ID","PROPERTY_PRODUCT_TYPE"));
         while($arItemsCheck = $itemsCheck->Fetch()) {
             $sectionProductTypes[$arItemsCheck["PROPERTY_PRODUCT_TYPE_ENUM_ID"]] = $arItemsCheck["PROPERTY_PRODUCT_TYPE_ENUM_ID"];
         }
