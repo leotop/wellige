@@ -31,8 +31,7 @@
 
 <?if (is_array($arResult["OFFERS"]) && count($arResult["OFFERS"]) > 0) {//товар с торговыми предложениями?>
     <div class="product">
-        <div class="wrapper cf">   
-
+        <div class="wrapper cf">      
 
             <?foreach ($arResult["OFFERS"] as $o=>$offer) {?>
 
@@ -144,57 +143,42 @@
     <?}?>
 
 
-
-<section class="library-stores js-hidden" data-target='stores'>
-    <div class="library-stores__inner">
-        <div class="wrapper">
-            <h2 class="more-stores__title">где посмотреть</h2>
-            <div class="carousel__nav more-stores__nav"> </div>
-            <div class="more-stores__list js-carousel">
-                <a href="#" class="more-stores__item">
-                    <div class="more-stores__image"><img src="/img/pages/store/store_01.png" alt=""></div>
-                    <div class="more-stores__name subway __lightgreen">м. Трубная
-                        <br>ТЦ «Цветной»</div>
-                </a>
-                <a href="#" class="more-stores__item">
-                    <div class="more-stores__image"><img src="/img/pages/store/store_02.png" alt=""></div>
-                    <div class="more-stores__name subway __orange">м. Проспект Мира
-                        <br>ТЦ «Олимпийский»</div>
-                </a>
-                <a href="#" class="more-stores__item">
-                    <div class="more-stores__image"><img src="/img/pages/store/store_03.png" alt=""></div>
-                    <div class="more-stores__name subway __purple">м. Тушинская
-                        <br>ТЦ «Дорогие окраины»</div>
-                </a>
-                <a href="#" class="more-stores__item">
-                    <div class="more-stores__image"><img src="/img/pages/store/store_04.png" alt=""></div>
-                    <div class="more-stores__name subway __purple">м. Пролетарская
-                        <br>ТЦ «Кристалл»</div>
-                </a>
-                <a href="#" class="more-stores__item">
-                    <div class="more-stores__image"><img src="/img/pages/store/store_01.png" alt=""></div>
-                    <div class="more-stores__name subway __lightgreen">м. Трубная
-                        <br>ТЦ «Цветной»</div>
-                </a>
-                <a href="#" class="more-stores__item">
-                    <div class="more-stores__image"><img src="/img/pages/store/store_02.png" alt=""></div>
-                    <div class="more-stores__name subway __orange">м. Проспект Мира
-                        <br>ТЦ «Олимпийский»</div>
-                </a>
-                <a href="#" class="more-stores__item">
-                    <div class="more-stores__image"><img src="/img/pages/store/store_03.png" alt=""></div>
-                    <div class="more-stores__name subway __purple">м. Тушинская
-                        <br>ТЦ «Дорогие окраины»</div>
-                </a>
-                <a href="#" class="more-stores__item">
-                    <div class="more-stores__image"><img src="/img/pages/store/store_04.png" alt=""></div>
-                    <div class="more-stores__name subway __purple">м. Пролетарская
-                        <br>ТЦ «Кристалл»</div>
-                </a>
+<?if (is_array($arResult["SHOPS"]) && count($arResult["SHOPS"]) > 0) {?> 
+    <section class="library-stores js-hidden" data-target='stores'>  
+        <style>  
+            <?foreach ($arResult["METRO"] as $station) {?>
+                .subway_<?=$station["ID"]?>::before {
+                    background-color: #<?=$station["PROPERTY_LINE_COLOR_VALUE"]?>;
+                }
+                <?}?>
+        </style>
+        <div class="library-stores__inner">
+            <div class="wrapper">
+                <h2 class="more-stores__title">где посмотреть</h2>
+                <div class="carousel__nav more-stores__nav"> </div>
+                <div class="more-stores__list js-carousel">
+                    <?foreach ($arResult["SHOPS"] as $shop) {?>                                      
+                        <a href="<?=$shop["DETAIL_PAGE_URL"]?>" class="more-stores__item">
+                            <?if($shop["DETAIL_PICTURE"]){
+                                    $img = CFIle::ResizeImageGet($shop["DETAIL_PICTURE"],array("width"=>326,"height"=>210),BX_RESIZE_IMAGE_EXACT);
+                                    $imgInfo = CFIle::GetFileArray($productType["PICTURE"]);
+                                ?>
+                                <div class="more-stores__image">
+                                    <img src="<?=$img["src"]?>" alt="<?=$imgInfo["DESCRIPTION"]?>">
+                                </div>
+                                <?}?>
+                            <div class="more-stores__name subway <?if ($shop["METRO"]["COLOR"]){?> subway_<?=$shop["METRO"]["ID"]?><?} else {?> clear_margin_left<?}?>" >
+                                <?if ($shop["METRO"]["NAME"]){?>м. <?=$shop["METRO"]["NAME"]?><br><?}?>                               
+                                <?=$shop["NAME"]?>
+                            </div>
+                        </a>
+                        <?}?>
+                </div>
             </div>
         </div>
-    </div>
-</section>         
+    </section>
+    <?}?>
+
 
 <?if(is_array($arResult["ATTENTION"]) && count($arResult["ATTENTION"]) > 0) {?>
     <section class="library-attention">
