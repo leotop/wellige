@@ -530,7 +530,7 @@
         }
 
         //room types
-        $roomTypes = CIBlockSection::GetList(array(),array("IBLOCK_ID"=>$arParams["IBLOCK_ID"],"SECTION_ID"=>$arResult["ID"], "ACTIVE"=>"Y"),true);
+        $roomTypes = CIBlockSection::GetList(array("SORT"=>"ASC"),array("IBLOCK_ID"=>$arParams["IBLOCK_ID"],"SECTION_ID"=>$arResult["ID"], "ACTIVE"=>"Y"),true);
         while($arRoomType = $roomTypes->GetNext()) {
             $arRoomType["ROOMS"] = 0;
             //current type rooms
@@ -542,7 +542,7 @@
             $arResult["ROOM_TYPES"][] = $arRoomType;
         } 
 
-        shuffle($arResult["ROOM_TYPES"]);
+        //shuffle($arResult["ROOM_TYPES"]);
 
         //item types
         $productTypes = CIBlockProperty::GetPropertyEnum("PRODUCT_TYPE",array("VALUE"=>"ASC"),array("IBLOCK_ID"=>$arParams["IBLOCK_ID"]));
@@ -577,12 +577,12 @@
         }
 
         //room types
-        $roomTypes = CIBlockSection::GetList(array(),array("IBLOCK_ID"=>$arParams["IBLOCK_ID"],"SECTION_ID"=>$arResult["IBLOCK_SECTION_ID"], "ACTIVE"=>"Y"),true);
+        $roomTypes = CIBlockSection::GetList(array("SORT"=>"ASC"),array("IBLOCK_ID"=>$arParams["IBLOCK_ID"],"SECTION_ID"=>$arResult["IBLOCK_SECTION_ID"], "ACTIVE"=>"Y"),true);
         while($arRoomType = $roomTypes->GetNext()) {
             $arResult["ROOM_TYPES"][] = $arRoomType;
         } 
 
-        shuffle($arResult["ROOM_TYPES"]);
+        //shuffle($arResult["ROOM_TYPES"]);
 
         //item types
         $productTypes = CIBlockProperty::GetPropertyEnum("PRODUCT_TYPE",array("VALUE"=>"ASC"),array("IBLOCK_ID"=>$arParams["IBLOCK_ID"]));
