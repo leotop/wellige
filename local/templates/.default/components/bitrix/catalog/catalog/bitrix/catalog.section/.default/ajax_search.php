@@ -10,7 +10,7 @@
             $section = $arSectionInfo["IBLOCK_SECTION_ID"];
         }
 
-        $items = CIBlockElement::GetList(array(),array("IBLOCK_ID"=>CATALOG_IBLOCK_ID, "ACTIVE"=>"Y", "?NAME"=>$query, "SECTION_ID"=>$section, "INCLUDE_SUBSECTIONS"=>"Y"),false,false,array("ID","NAME","DETAIL_PICTURE","DETAIL_PAGE_URL"));
+        $items = CIBlockElement::GetList(array("SORT"=>"ASC"),array("IBLOCK_ID"=>CATALOG_IBLOCK_ID, "ACTIVE"=>"Y", "?NAME"=>$query, "SECTION_ID"=>$section, "INCLUDE_SUBSECTIONS"=>"Y"),false,false,array("ID","NAME","DETAIL_PICTURE","DETAIL_PAGE_URL"));
         while($arItem = $items->GetNext()) {
             $arResult["SEARCH_RESULT"]["ITEMS"][] = $arItem;
         }
@@ -24,7 +24,7 @@
             $sectionList[] = $arSection["ID"];
         }
 
-        $sections =  CIBlockSection::GetList(array(),array("IBLOCK_ID"=>CATALOG_IBLOCK_ID, "ACTIVE"=>"Y","NAME"=>"%".$query."%", "SECTION_ID"=>$sectionList,"INCLUDE_SUBSECTIONS"=>"Y"));
+        $sections =  CIBlockSection::GetList(array("SORT"=>"ASC"),array("IBLOCK_ID"=>CATALOG_IBLOCK_ID, "ACTIVE"=>"Y","NAME"=>"%".$query."%", "SECTION_ID"=>$sectionList,"INCLUDE_SUBSECTIONS"=>"Y"));
         while($arSection = $sections->GetNext()) {
             $arResult["SEARCH_RESULT"]["SECTIONS"][] = $arSection;
         }

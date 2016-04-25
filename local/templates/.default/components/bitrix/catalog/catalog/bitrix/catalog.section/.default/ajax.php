@@ -17,18 +17,18 @@
         switch ($type) {
             //rooms
             case "r": 
-                $sections = CIBlockSection::GetList(array(),array("SECTION_ID"=>$value, "IBLOCK_ID"=>CATALOG_IBLOCK_ID));
+                $sections = CIBlockSection::GetList(array("SORT"=>"ASC"),array("SECTION_ID"=>$value, "IBLOCK_ID"=>CATALOG_IBLOCK_ID));
                 //если нет подразделов, выбираем элементы
                 $sectionsCount = $sections->SelectedRowsCount();
                 if (!$sectionsCount) {
-                    $items = CIBlockElement::GetList(array(),array("SECTION_ID"=>$value,"IBLOCK_ID"=>CATALOG_IBLOCK_ID),false,false,array("ID","NAME","DETAIL_PICTURE","DETAIL_PAGE_URL"));    
+                    $items = CIBlockElement::GetList(array("SORT"=>"ASC"),array("SECTION_ID"=>$value,"IBLOCK_ID"=>CATALOG_IBLOCK_ID),false,false,array("ID","NAME","DETAIL_PICTURE","DETAIL_PAGE_URL"));    
                     $itemsCount = $items->SelectedRowsCount();
                 }
                 break;
 
                 //items 
             case "i": 
-                $items = CIBlockElement::GetList(array(),array("PROPERTY_PRODUCT_TYPE"=>$value,"SECTION_ID"=>$SECTION, "INCLUDE_SUBSECTIONS"=>"Y", "IBLOCK_ID"=>CATALOG_IBLOCK_ID),false,false,array("ID","NAME","DETAIL_PICTURE","DETAIL_PAGE_URL"));
+                $items = CIBlockElement::GetList(array("SORT"=>"ASC"),array("PROPERTY_PRODUCT_TYPE"=>$value,"SECTION_ID"=>$SECTION, "INCLUDE_SUBSECTIONS"=>"Y", "IBLOCK_ID"=>CATALOG_IBLOCK_ID),false,false,array("ID","NAME","DETAIL_PICTURE","DETAIL_PAGE_URL"));
                 $itemsCount = $items->SelectedRowsCount();                   
                 break;
         }       

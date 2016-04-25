@@ -782,8 +782,10 @@
     while ($arStore = $rsStore->Fetch()) {
         $arStoresID[] = $arStore["STORE_ID"];
     }
+    
+    $arStoresID = array_unique($arStoresID);
 
-    $arResult["ITEM_STORES"] = $arStoresID;
+    $arResult["ITEM_STORES"] = $arStoresID;  
 
     //собираем станции метро
     $stations = CIBlockElement::GetList(array(),array("IBLOCK_CODE"=>"metro"),false,false,array("ID","NAME","PROPERTY_LINE_COLOR"));
