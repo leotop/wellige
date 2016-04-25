@@ -282,7 +282,7 @@ if ($ElementID > 0)
 		}
 		if (($arRecomData['IBLOCK_LINK'] != '' || $arRecomData['ALL_LINK'] != ''))
 		{
-	?><?
+	?><? /*
 		$APPLICATION->IncludeComponent(
 			"bitrix:catalog.recommended.products",
 			"",
@@ -325,7 +325,7 @@ if ($ElementID > 0)
 				"CURRENCY_ID" => $arParams["CURRENCY_ID"]
 			),
 			$component
-		);
+		);  */
 	?><?
 		}
 	}
