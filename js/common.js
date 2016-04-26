@@ -668,7 +668,7 @@ $(function() {
     }
 
     $('.js-fullpage').fullpage({
-        
+
         //Navigation
         lockAnchors: destoySlider(),
         // navigationTooltips: ['firstSlide', 'secondSlide'],
@@ -824,13 +824,18 @@ $(function() {
         // afterSlideLoad: function(anchorLink, index, slideAnchor, slideIndex) {},
         onSlideLeave: function(anchorLink, index, slideIndex, direction, nextSlideIndex) {
             var currentSlide = $(this),
-            nextSlide = currentSlide.next(),
-            prevSlide = currentSlide.prev(),
+                nextSlide = currentSlide.next(),
+                prevSlide = currentSlide.prev(),
 
-            section = currentSlide.parents(".js-slide"),
-            bg = section.find('.slide__bg'),
-            nav = section.find('.js-slide-nav'),
-            frame = section.find('.js-nav-frame');
+                section = currentSlide.parents(".js-slide"),
+                bg = section.find('.slide__bg'),
+                nav = section.find('.js-slide-nav'),
+                frame = section.find('.js-nav-frame'),
+                slide = section.find('.js-slider-item'),
+                count = slide.length,
+                arrowNext = section.find('.js-arrow-next'),
+                arrowPrev = section.find('.js-arrow-prev');
+
 
             nav.removeClass('__active');
             nav.eq(nextSlideIndex).addClass('__active');
@@ -838,6 +843,23 @@ $(function() {
             bg.removeClass('__active');
             bg.eq(nextSlideIndex).addClass('__active');
 
+            if (nextSlideIndex == count - 1) {
+                arrowNext.hide();
+            } else {
+                arrowNext.show().css({
+                    animation: '',
+                    opacity: 1,
+                });
+            }
+            if (nextSlideIndex === 0) {
+                arrowPrev.hide();
+            } else {
+                arrowPrev.show().css({
+                    animation: '',
+                    opacity: 1,
+                });
+
+            }
             setFrameSize();
 
         }
@@ -1071,7 +1093,7 @@ $(window).on('load resize', function() {
     var mvp = document.getElementById('viewport'),
     screenWidth = screen.width,
     scale = screenWidth / 640;
-    
+
     if (screenWidth <= 640) {
         mvp.setAttribute('content', 'width=480, initial-scale='+ scale +', maximum-scale='+ scale +', minimum-scale='+ scale +'');
         // $H.width('440px');

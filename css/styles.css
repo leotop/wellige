@@ -535,7 +535,7 @@ a {
 @media only screen and (max-height: 800px) and (min-width: 767px) {
     .btn__next-slide {
     position: absolute;
-    left: 135px;
+    right: 135px;
     top: 50%;
     -webkit-transform: translateY(-50%);
     -ms-transform: translateY(-50%);
@@ -556,17 +556,17 @@ a {
 }
 @media only screen and (max-height: 800px) and (min-width: 767px) and (max-width: 1600px) {
     .btn__next-slide {
-    left: 45px;
+    right: 45px;
 }
 }
 @media only screen and (max-height: 800px) and (min-width: 767px) and (max-width: 1279px) {
     .btn__next-slide {
-    left: 80px;
+    right: 80px;
 }
 }
 @media only screen and (max-height: 800px) and (min-width: 767px) and (max-width: 1023px) {
     .btn__next-slide {
-    left: 65px;
+    right: 65px;
 }
 }
 .subway:before {
@@ -2513,6 +2513,7 @@ a {
 }
 .slide__arrow--left {
     left: 0;
+    display:none;
 }
 .slide__arrow--right {
     right: 0;
