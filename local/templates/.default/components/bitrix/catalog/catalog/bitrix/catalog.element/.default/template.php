@@ -144,14 +144,7 @@
 
 
 <?if (is_array($arResult["SHOPS"]) && count($arResult["SHOPS"]) > 0) {?> 
-    <section class="library-stores js-hidden" data-target='stores'>  
-        <style>  
-            <?foreach ($arResult["METRO"] as $station) {?>
-                .subway_<?=$station["ID"]?>::before {
-                    background-color: #<?=$station["PROPERTY_LINE_COLOR_VALUE"]?>;
-                }
-                <?}?>
-        </style>
+    <section class="library-stores js-hidden" data-target='stores'>           
         <div class="library-stores__inner">
             <div class="wrapper">
                 <h2 class="more-stores__title">где посмотреть</h2>
@@ -166,9 +159,16 @@
                                 <div class="more-stores__image">
                                     <img src="<?=$img["src"]?>" alt="<?=$imgInfo["DESCRIPTION"]?>">
                                 </div>
-                                <?}?>
-                            <div class="more-stores__name subway <?if ($shop["METRO"]["COLOR"]){?> subway_<?=$shop["METRO"]["ID"]?><?} else {?> clear_margin_left<?}?>" >
-                                <?if ($shop["METRO"]["NAME"]){?>м. <?=$shop["METRO"]["NAME"]?><br><?}?>                               
+                                <?}?>   
+                            <div class="more-stores__name subway clear_margin_left" >
+                                <?if (is_array($shop["METRO"]) && count($shop["METRO"]) > 0) {?>
+                                    <?foreach ($shop["METRO"] as $station) {?>
+                                        <div class="shopMetroStation">
+                                            <div class="shopMetroStationColor" style="background: #<?=$station["COLOR"]?>;"></div>
+                                            <div>�. <?=$station["NAME"]?></div>
+                                        </div>
+                                        <?}?>
+                                    <?}?>                              
                                 <?=$shop["NAME"]?>
                             </div>
                         </a>
