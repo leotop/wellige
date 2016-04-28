@@ -114,7 +114,7 @@
                 <div class="slide__wrap">
 
                     <?$bg = $arResult["PICTURE"]["SRC"]?>
-                    <div class="mainpage__videos slide__bg slide__bg--brown js-anim-videos" data-bg='<?=$bg?>'>   
+                    <div class="mainpage__videos slide__bg slide__bg--dark js-anim-videos" data-bg='<?=$bg?>'>   
                         <?if ($arResult["SECTION_INFO"]["UF_STYLE_VIDEO"]) {
                                 $videoPath = CFile::GetPath($arResult["SECTION_INFO"]["UF_STYLE_VIDEO"]);
                             ?>

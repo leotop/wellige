@@ -25,7 +25,13 @@
             <?endforeach;?>
         ]
     };   
-</script> 
+</script>
+<div class="wrapper contacts__rightsection">
+	<div class="wheretobuy__contacts">
+		<a href="tel:+74997053088"><div class="wheretobuy__phone">+7 (499) 705-30-88</div></a>
+		<div class="wheretobuy__info">единая справочная</div>
+	</div>
+</div>
 <section class="wheretobuy">
     <div class="wheretobuy__map js-stores-map" id="map" data-lat="55.584986" data-lng="37.721001" data-marker-url="/img/icons/pin.png" data-marker-hover="/img/icons/pin-hover.png" data-marker-group-url="/img/icons/pin-group.png"
         data-objects-url=""></div>

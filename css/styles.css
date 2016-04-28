@@ -1852,10 +1852,10 @@ a {
     height: 88px;
 }
 .header--hidden .menu__inner.__left {
-    margin-right: -80px;
+    margin-right: -69px;
 }
 .header--hidden .menu__inner.__right {
-    margin-left: -80px;
+    margin-left: -69px;
 }
 .header--hidden .menu__item {
     color: #fff;
@@ -3868,7 +3868,7 @@ a {
 .style__name {
     font-size: 60px;
     font-weight: 700;
-    line-height: 48px;
+    line-height: 64px;
     text-transform: uppercase;
     letter-spacing: 8px;
 }
@@ -4996,7 +4996,7 @@ a {
     text-align: center;
     background: rgba(68, 105, 91, 0.6);
     line-height: 95px;
-    letter-spacing: 6px;
+    letter-spacing: 5px;
     -webkit-transition: 0.3s;
     transition: 0.3s;
 }
@@ -7655,4 +7655,41 @@ dl.product-features__feature-text {
 
 .product__image .slick-list {
     height: 100% !important;
+}
+
+@media(max-width:1280px){
+	.library-other__title{
+		line-height: 36px;
+	}
+}
+
+.contacts__rightsection{
+	position: relative;
+}
+
+.wheretobuy__contacts{
+	position: absolute;
+	right: 0;
+	bottom: 25px;
+	text-align: right;
+}
+.wheretobuy__phone {
+  color: #1a1a1a;
+  font-size: 48px;
+  font-weight: 500;
+  margin-bottom: -5px;
+}
+.wheretobuy__info {
+  color: #bababa;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+}
+
+@media(max-width: 1030px){
+	.wheretobuy__contacts{
+		position: relative;
+		text-align: left;
+	}
 }

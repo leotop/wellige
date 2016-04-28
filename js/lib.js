@@ -10010,7 +10010,7 @@
                 var visibleSectionIndex = 0;
                 //                var initial = Math.abs(currentScroll - document.querySelectorAll(SECTION_SEL)[0].offsetTop);
                 if (document.querySelectorAll(SECTION_SEL)[0]!=undefined) {
-                    alert(document.querySelectorAll(SECTION_SEL)[0]);
+                    //alert(document.querySelectorAll(SECTION_SEL)[0]);
                     var initial = Math.abs(currentScroll - document.querySelectorAll(SECTION_SEL)[0].offsetTop);
                 }
 
