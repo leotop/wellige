@@ -679,7 +679,7 @@ a {
     display: block;
 }
 }
-.map-bbl-wrap > div:not(.close-map-img) {
+.map-bbl-wrap &gt; div:not(.close-map-img) {
     height: auto !important;
     width: auto !important;
 }
@@ -2285,7 +2285,7 @@ a {
     bottom: 0;
 }
 .slide__bg--dark:after {
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.05);
 }
 .slide__bg--brown:after {
     background: rgba(71, 59, 57, 0.8);
@@ -4407,7 +4407,7 @@ a {
     margin-bottom: 30px;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
-    /*&:hover
+    /*&amp;:hover
     * .care-item__icon
     *     transform: translateY(5px) */
 }
@@ -7278,16 +7278,16 @@ dl.product-features__feature-text {
     vertical-align: top;
     width: 75%;
 }
-.contacts__wrap > .contacts__list-item:nth-child(1) {
+.contacts__wrap &gt; .contacts__list-item:nth-child(1) {
     width: 56.5%;
 }
-.contacts__wrap > .contacts__list-item:nth-child(2) {
+.contacts__wrap &gt; .contacts__list-item:nth-child(2) {
     width: 43.5%;
 }
 .contacts__list {
     font-size: 0;
 }
-.contacts__list > .contacts__list-item {
+.contacts__list &gt; .contacts__list-item {
     width: 25%;
 }
 .contacts__list-item {
@@ -7336,14 +7336,14 @@ dl.product-features__feature-text {
     .contacts__wrap {
     width: 56%;
 }
-.contacts__wrap > .contacts__list-item:nth-child(1), .contacts__wrap > .contacts__list-item:nth-child(2) {
+.contacts__wrap &gt; .contacts__list-item:nth-child(1), .contacts__wrap &gt; .contacts__list-item:nth-child(2) {
     display: block;
     width: 100%;
 }
-.contacts__wrap > .contacts__list-item:nth-child(2) {
+.contacts__wrap &gt; .contacts__list-item:nth-child(2) {
     margin-top: 30px;
 }
-.contacts__list > .contacts__list-item {
+.contacts__list &gt; .contacts__list-item {
     width: 44%;
 }
 }
@@ -7364,7 +7364,7 @@ dl.product-features__feature-text {
 .contacts__wrap {
     width: 100%;
 }
-.contacts__list > .contacts__list-item {
+.contacts__list &gt; .contacts__list-item {
     margin: 0 auto;
     padding-top: 30px;
     border-top: 1px solid #e4eae5;
@@ -7403,7 +7403,7 @@ dl.product-features__feature-text {
     background-color: #f5f5f5;
     padding-bottom: 60px;
 }
-.article > .wrapper:after {
+.article &gt; .wrapper:after {
     content: "";
     display: table;
     clear: both;

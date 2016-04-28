@@ -63,7 +63,10 @@
             <div class="film js-film" data-src="/video/film.mp4"></div>
         </div>
 
-        <?$APPLICATION->IncludeFile(SITE_DIR."include/logo_hide.php", Array(),Array("MODE"=>"html"));?>            
+        <a href="/">
+        <?$APPLICATION->IncludeFile(SITE_DIR."include/logo_hide.php", Array(),Array("MODE"=>"html"));?>  
+        </a>
+                  
         <h1 class="slide__title js-hide hide-scale">           
             <?$APPLICATION->IncludeFile(SITE_DIR."include/slogan.php", Array(),Array("MODE"=>"html"));?>
         </h1>

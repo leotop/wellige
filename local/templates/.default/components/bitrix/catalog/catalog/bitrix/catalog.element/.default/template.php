@@ -54,8 +54,7 @@
 
             <div class="product__right">
                 <div class="library-colors__list">
-                    <?foreach ($arResult["OFFERS"] as $o=>$offer) {?>
-                        <?//arshow($offer["PROPERTIES"]["COLOR"])?>
+                    <?foreach ($arResult["OFFERS"] as $o=>$offer) {?>                       
                         <div class="library-colors__item">
                             <div class="library-colors__item-color js-item-color <?if($o == 0){?>__selected<?}?>" data-color="<?=$offer["ID"]?>" style="background-image: url(<?=$arResult["COLORS_LIST"][$offer["PROPERTIES"]["COLOR"]["VALUE"]]["COLOR_TEMPLATE_PATH"]?>)"></div>
                         </div>
@@ -160,12 +159,12 @@
                                     <img src="<?=$img["src"]?>" alt="<?=$imgInfo["DESCRIPTION"]?>">
                                 </div>
                                 <?}?>   
-                            <div class="more-stores__name subway clear_margin_left" >
+                            <div class="more-stores__name clear_margin_left" >
                                 <?if (is_array($shop["METRO"]) && count($shop["METRO"]) > 0) {?>
                                     <?foreach ($shop["METRO"] as $station) {?>
                                         <div class="shopMetroStation">
                                             <div class="shopMetroStationColor" style="background: #<?=$station["COLOR"]?>;"></div>
-                                            <div>�. <?=$station["NAME"]?></div>
+                                            <div>м. <?=$station["NAME"]?></div>
                                         </div>
                                         <?}?>
                                     <?}?>                              
@@ -252,26 +251,26 @@
                     <dl class="product-features__feature-text">
 
                         <?if($arResult["PROPERTIES"]["WIDTH"]["VALUE"]){?> 
-                            <dt>Ширина, мм</dt><dd><?=$arResult["PROPERTIES"]["WIDTH"]["VALUE"]?></dd> 
+                            <dt>Ширина</dt><dd><?=$arResult["PROPERTIES"]["WIDTH"]["VALUE"]?></dd> 
                             <?}?>
 
                         <?if($arResult["PROPERTIES"]["HEIGHT"]["VALUE"]){?>
-                            <dt>Высота, мм</dt><dd><?=$arResult["PROPERTIES"]["HEIGHT"]["VALUE"]?></dd> 
+                            <dt>Высота</dt><dd><?=$arResult["PROPERTIES"]["HEIGHT"]["VALUE"]?></dd> 
                             <?}?>
 
                         <?if($arResult["PROPERTIES"]["DEPTH"]["VALUE"]){?>
-                            <dt>Глубина, мм</dt><dd><?=$arResult["PROPERTIES"]["DEPTH"]["VALUE"]?></dd>
+                            <dt>Глубина</dt><dd><?=$arResult["PROPERTIES"]["DEPTH"]["VALUE"]?></dd>
                             <?}?>
 
                     </dl>
 
                     <dl class="product-features__feature-text"> 
                         <?if($arResult["PROPERTIES"]["VOLUME"]["VALUE"]){?>
-                            <dt>Объём, м<sup>3</sup></dt><dd><?=$arResult["PROPERTIES"]["VOLUME"]["VALUE"]?></dd> 
+                            <dt>Объем<sup>3</sup></dt><dd><?=$arResult["PROPERTIES"]["VOLUME"]["VALUE"]?></dd> 
                             <?}?>
 
                         <?if($arResult["PROPERTIES"]["WEIGHT"]["VALUE"]){?>
-                            <dt>Вес, кг</dt><dd><?=$arResult["PROPERTIES"]["WEIGHT"]["VALUE"]?></dd>
+                            <dt>Вес</dt><dd><?=$arResult["PROPERTIES"]["WEIGHT"]["VALUE"]?></dd>
                             <?}?>
                     </dl>
 
@@ -335,7 +334,7 @@
         <div class="wrapper">
             <h2 class="library-attention__title">другие товары из этой категории</h2>
             <div class="carousel__nav more-stores__nav"></div>
-            <div class="library-сost__list js-carousel">
+            <div class="library-СЃost__list js-carousel">
                 <?foreach ($arResult["OTHER_PRODUCTS"] as $item) {?>
                     <a href="<?=$item["DETAIL_PAGE_URL"]?>" class="library-cost__item">
                         <div class="library-cost__item-image">
